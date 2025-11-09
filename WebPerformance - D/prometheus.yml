@@ -1,0 +1,9 @@
+# prometheus.yml
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'variant-d'
+    static_configs:
+      - targets: ['variant-d:8080']
+    metrics_path: '/actuator/prometheus'

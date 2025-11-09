@@ -1,0 +1,16 @@
+# Dockerfile
+FROM eclipse-temurin:17-jdk-alpine
+
+# JMX Exporter (updated version)
+COPY jmx_prometheus_javaagent-0.19.0.jar /jmx_exporter.jar
+COPY prometheus-config.yml /prometheus-config.yml
+
+WORKDIR /app
+COPY target/*.jar app.jar
+
+EXPOSE 8080 9000
+
+CMD ["java", \
+     "-javaagent:/jmx_exporter.jar=9000:/prometheus-config.yml", \
+     "-Xms1g", "-Xmx2g", "-XX:+UseG1GC", \
+     "-jar", "app.jar"]

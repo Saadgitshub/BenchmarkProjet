@@ -1,0 +1,11 @@
+# prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'variant-c'
+    static_configs:
+      - targets: ['variant-c:8080']
+    metrics_path: '/actuator/prometheus'
+    scheme: http

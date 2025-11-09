@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/restbench
+    username: postgres
+    password: secret
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 10
+      connection-timeout: 30000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        cache:
+          use_second_level_cache: false
+          use_query_cache: false
+
+  data:
+    rest:
+      base-path: /
+      return-body-on-create: true
+      return-body-on-update: true
+      default-page-size: 50
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics,prometheus
+    endpoint:
+      prometheus:
+        enabled: true

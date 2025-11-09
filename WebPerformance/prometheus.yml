@@ -1,0 +1,8 @@
+# prometheus.yml
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'variant-a'
+    static_configs:
+      - targets: ['variant-a:9000']

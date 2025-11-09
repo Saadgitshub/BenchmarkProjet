@@ -1,0 +1,4 @@
+# prometheus-config.yml
+lowercaseOutputName: true
+rules:
+  - pattern: '.*'
